@@ -45,4 +45,37 @@ RSpec.describe EnvironmentReading do
       end
     end
   end
+
+  describe '#save' do
+    let(:temperature) { 30 }
+    let(:humidity) { 50 }
+
+    before { ActiveJob::Base.queue_adapter = :test }
+
+    subject { described_class.new(temperature: temperature, humidity: humidity) }
+
+    context 'when the humidity is below 45' do
+      let(:humidity) { 20 }
+
+      it 'enqueues a notification job' do
+        expect { subject.save }.to have_enqueued_job(NotificationJob)
+      end
+    end
+
+    context 'when the humidity is above 70' do
+      let(:humidity) { 85 }
+
+      it 'enqueues a notification job' do
+        expect { subject.save }.to have_enqueued_job(NotificationJob)
+      end
+    end
+
+    context 'when the humidity is between 45 and 70' do
+      let(:humidity) { 55 }
+
+      it 'does not enqueue a notification job' do
+        expect { subject.save }.not_to have_enqueued_job(NotificationJob)
+      end
+    end
+  end
 end
