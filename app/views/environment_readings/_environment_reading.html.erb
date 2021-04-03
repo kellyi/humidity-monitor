@@ -1,0 +1,7 @@
+<tr data-testid="environmentReadingRow">
+  <td><%= environment_reading.created_at.to_formatted_s(:long) %></td>
+  <td><%= environment_reading.id %></td>
+  <td><%= environment_reading.temperature.round(2) %></td>
+  <td><%= environment_reading.humidity.round(2) %></td>
+  <td><%= environment_reading.message %></td>
+</tr>
