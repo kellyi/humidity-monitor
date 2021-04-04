@@ -18,4 +18,4 @@ example_id                                         | status | run_time        |
 ./spec/models/text_message_spec.rb[1:1:2:1:1]      | passed | 0.00428 seconds |
 ./spec/models/text_message_spec.rb[1:1:2:2:1]      | passed | 0.00445 seconds |
 ./spec/requests/messages_spec.rb[1:1:1]            | passed | 1.46 seconds    |
-./spec/system/home_spec.rb[1:1]                    | passed | 3.91 seconds    |
+./spec/system/home_spec.rb[1:1]                    | passed | 2.35 seconds    |
